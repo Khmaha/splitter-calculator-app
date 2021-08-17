@@ -1,0 +1,21 @@
+.tip-emp{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
+    width: 100%;
+    &--bill{
+        order:0
+    }
+    &--people{
+        order:2
+    }
+    &__title{
+        font-size: 16px;
+        font-family: 'Space Mono';
+        font-weight: bold;
+        color: var(--title-color);
+        padding: 10px 0;
+
+    }
+}

@@ -1,0 +1,40 @@
+.input-emp{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    &-el{ 
+        padding: 10px 0;
+        background-color: var(--text-color);
+        border: none;
+        width: 100%;
+        padding-left: 3em;
+        text-align: right;
+        outline: none;
+        padding-right: 1em;
+        color: var(--title-color);
+        font-size: 16px;
+        font-family: 'Space Mono';
+        font-weight: bold;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        &:focus{
+         border: 2px solid var(--secondary-color);
+        }
+        &[type=number], 
+        &::-webkit-inner-spin-button , 
+        &::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+          }
+    }
+    &-icon{
+        position: absolute;
+        left: 1em;
+        height: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+}

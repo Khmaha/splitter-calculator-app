@@ -1,5 +1,20 @@
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--background-color);
+  min-height: 100%;
+  @media screen and (max-width: 768px){
+    padding-bottom: 1em;
+  }
+  .logo{
+    padding: 1em;
+    padding-bottom: 3em;
+  }
 }
 
 .App-logo {

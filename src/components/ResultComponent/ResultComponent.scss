@@ -1,0 +1,75 @@
+.result-emp{
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    background: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    width: 100%;
+    @media screen and(max-width:768px){
+        margin-top: 1em;
+    }
+    &__list{
+        display: flex;
+        align-items: center;
+        flex-direction: column; 
+        width: 100%;
+        padding: 1em 0;
+        &-tip{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: flex-start;
+            padding-top: 1em;
+            font-size: 16px;
+            font-family: 'Space Mono';
+            font-weight: bold;
+            &__per-person{
+                color: var(--title-color); 
+                display: flex;
+                align-items: flex-start;
+                padding-left: 1em;
+                flex-direction: column;
+                &--title{
+                    color: var(--text-color);
+                }
+            }
+            &__result{
+                color: var(--secondary-color); 
+                 font-size: 32px;
+                font-family: 'Space Mono';
+                font-weight: bold;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                padding-right: 1em;
+            }
+        }
+    }
+    &__reset{
+        width: 92%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        padding: 0.5em 0;
+        color: var(--primary-color);
+        background-color: var(--secondary-color);
+        border: none;
+        margin: 1em;
+        font-weight: 700;
+        font-size: 16px;
+        font-family: 'Space Mono';
+        box-shadow: 2px 0px 15px var(--shadow-reset-btn);
+        border-radius: 5px;
+        cursor: pointer;
+        &--disabled{
+            cursor:  not-allowed;
+        }
+    }
+}
