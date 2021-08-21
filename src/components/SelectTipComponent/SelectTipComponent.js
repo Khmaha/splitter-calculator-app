@@ -15,7 +15,7 @@ const SelectTipComponent = ({ title, tips, onChange, selectedTip, valueTip, isCu
                                 className={"select-tip-emp__percent__custom " + (selectedTip === tip.id ? ' selected' : '')}
                                 type='number'
                                 onChange={(e) => onChange(e, tip)}
-                                placeholder={tip.value}></input>
+                                placeholder={tip.name}></input>
                     )
                     )
                 }

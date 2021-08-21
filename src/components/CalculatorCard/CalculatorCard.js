@@ -12,9 +12,10 @@ const CalculatorCard = () => {
         selectedTip: 0,
         isCustomTip: false,
         billValue: 0,
-        nbPeople: 0,
+        nbPerson: 0,
         total: 0,
         amount: 0,
+        error: false
 
     })
     const tips = [
@@ -46,8 +47,9 @@ const CalculatorCard = () => {
         },
         {
             id: 6,
-            value: 'Custom',
+            value: 0,
             type: 'text',
+            name: "Custom"
         },
     ]
     const tipsContent = [
@@ -81,40 +83,38 @@ const CalculatorCard = () => {
         },
     ]
     const handleChangeTip = (e, tip) => {
-        console.log("handleChangeTip", tip)
         var valueTip = "";
         var customValueTip = "";
         let customInput = document.querySelector('.select-tip-emp__percent__custom')
 
         var isCustomTip = tipObject.isCustomTip;
-        if (e && e.target.value) {
+        if (e && e.target.value && e.target.value && e.target.value !== 'Custom') {
             valueTip = e.target.value;
             customValueTip = e.target.value;
             isCustomTip = true
         } else {
             valueTip = tip.value;
-            customValueTip = "";
+            customValueTip = 0;
             if (customInput) {
                 customInput.value = ''
             }
             isCustomTip = false
         }
-        console.log("bill*******", bill)
-        console.log("tipObject.billValue*******", tipObject.billValue)
 
-        var billValue = (tipObject.billValue ? tipObject.billValue : 0)//else bill
-        var nbPersonValue = (tipObject.nbPerson ? tipObject.nbPerson : 1)//else nbPerson
-        if (nbPersonValue) {
-            var amount = (billValue * ((valueTip) / 100)) / nbPersonValue
-            var total = ((billValue / nbPersonValue) + amount)
-        }
+        var billValue = tipObject.billValue
+        var nbPersonValue = tipObject.nbPerson
+        var amount = parseInt(nbPersonValue) && parseInt(nbPersonValue) !== 0 ? (billValue * ((valueTip) / 100)) / parseInt(nbPersonValue) : 0
+        var total = parseInt(nbPersonValue) && parseInt(nbPersonValue) !== 0 ? ((billValue / parseInt(nbPersonValue)) + amount) : amount
+
         setTipObject({
             ...tipObject,
             selectedTip: tip.id,
             valueTip: valueTip,
             isCustomTip: isCustomTip,
             amount: amount && amount.toFixed(2),
-            total: total && total.toFixed(2)
+            total: total && total.toFixed(2),
+            error: !parseInt(nbPersonValue)
+
         })
 
     }
@@ -125,39 +125,31 @@ const CalculatorCard = () => {
         } else {
             nbPerson = parseInt(e.target.value)
         }
-        console.log("bill", bill)
-        console.log("nbPerson", nbPerson)
-        console.log("tipObject.valueTip", tipObject.valueTip)
-        // if (!bill) {
-        //     bill = tipObject.billValue
-        // }
-        // if (!nbPerson) {
-        //     nbPerson = tipObject.nbPerson
-        // }
-        if (nbPerson) {
-            var amount = ((bill ? bill : 0) * (tipObject.valueTip / 100)) / (nbPerson ? nbPerson : 1)
-            var total = ((bill ? bill : 0) / (nbPerson ? nbPerson : 1) + amount)
-        }
-        console.log("amount", amount)
-        console.log("total", total)
+
+        var amount = parseInt(nbPerson) && parseInt(nbPerson) !== 0 ? ((bill) * (tipObject.valueTip / 100)) / parseInt(nbPerson) : 0
+        var total = parseInt(nbPerson) && parseInt(nbPerson) !== 0 ? ((bill) / (parseInt(nbPerson)) + amount) : amount
         setTipObject({
             ...tipObject,
             billValue: bill,
-            nbPerson: nbPerson,
+            nbPerson: parseInt(nbPerson),
             amount: amount && amount.toFixed(2),
-            total: total && total.toFixed(2)
+            total: total && total.toFixed(2),
+            error: !parseInt(nbPerson)
         })
 
     }
     const handleResetCalcul = () => {
+        bill = 0;
+        nbPerson = 0;
         setTipObject({
             valueTip: "",
             selectedTip: 0,
             isCustomTip: false,
             billValue: 0,
-            numberPeople: 0,
+            nbPerson: 0,
             total: 0,
             amount: 0,
+            error: false
         })
         let customInput = document.querySelector('.select-tip-emp__percent__custom')
         let InputTips = document.querySelectorAll('.input-emp-el')
